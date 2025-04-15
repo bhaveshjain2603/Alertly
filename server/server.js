@@ -1,23 +1,20 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+import express from "express";
+import cors from "cors";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+import { connection } from "./database/connection.js";
+import router from "./routes/User.routes.js";
+
 const app = express();
 
-const User = require("./models/User.models.js");
-const {connection} = require("./database/connection.js");
-
-// Environment Variables
-const dotenv = require("dotenv");
+// Load environment variables
 dotenv.config();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("Hello")
-})
+app.use("/api", router);
 
 // Nodemailer Transporter
 const transporter = nodemailer.createTransport({
@@ -33,33 +30,6 @@ transporter.verify((error, success) => {
     console.error("Error configuring transporter:", error);
   } else {
     console.log("Server is ready to send emails:", success);
-  }
-});
-
-// API Routes
-app.post("/api/users", async (req, res) => {
-  const { name, age, location, familyContact, message } = req.body;
-  try {
-    const newUser = new User({ name, age, location, familyContact, message });
-    await newUser.save();
-    res.json({ message: "User data saved successfully!" });
-  } catch (error) {
-    res.status(500).json({ message: "Error saving user data." });
-  }
-});
-
-app.post("/api/alert", async (req, res) => {
-  const { name, location, familyContact, message } = req.body;
-  try {
-    await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
-      to: familyContact,
-      subject: "Emergency Alert",
-      text: `An emergency alert has been triggered by ${name}. \nCurrent location: ${location}. \nMessage: ${message}`
-    });
-    res.json({ message: "Emergency alert sent to family members!" });
-  } catch (error) {
-    res.status(500).json({ message: "Error sending alert." });
   }
 });
 
