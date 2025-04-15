@@ -1,4 +1,5 @@
 import User from "../models/User.models.js";
+import nodemailer from "nodemailer";
 
 export const registerUser = async (req, res) => {
     const { name, age, location, familyContact, message } = req.body;
@@ -13,6 +14,13 @@ export const registerUser = async (req, res) => {
   
 export const sendAlerts = async (req, res) => {
     const { name, location, familyContact, message } = req.body;
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.SMTP_EMAIL,
+        pass: process.env.SMTP_PASS
+      }
+    });
     try {
       await transporter.sendMail({
         from: process.env.SMTP_EMAIL,
