@@ -158,6 +158,7 @@ function App() {
               </Grid>
               <Grid item xs={12}>
                 <Button
+                  onClick={submitForm}
                   type="submit"
                   variant="contained"
                   color="primary"
