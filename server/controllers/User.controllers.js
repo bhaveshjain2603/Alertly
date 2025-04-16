@@ -23,9 +23,10 @@ export const sendAlerts = async (req, res) => {
     });
     try {
       await transporter.sendMail({
-        from: userEmail,
+        from: "Alertly App", // Authenticated sender
         to: familyContact,
-        subject: "🚨Emergency Alert🚨",
+        replyTo: userEmail, // 👈 Add this
+        subject: "🚨 Emergency Alert 🚨",
         html: `
           <div style="font-family: Arial, sans-serif; color: #333;">
             <h2 style="color: red;">Emergency Alert of ${name} 🚨</h2>
