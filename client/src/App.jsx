@@ -59,6 +59,7 @@ function App() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
+      console.log(formData)
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
       alert(response.data.message);
     } catch (error) {
