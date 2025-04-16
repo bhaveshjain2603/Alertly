@@ -2,9 +2,9 @@ import User from "../models/User.models.js";
 import nodemailer from "nodemailer";
 
 export const registerUser = async (req, res) => {
-    const { name, age, location, familyContact, message } = req.body;
+    const { name, age, userEmail, location, familyContact, message } = req.body;
     try {
-      const newUser = new User({ name, age, location, familyContact, message });
+      const newUser = new User({ name, age, userEmail, location, familyContact, message });
       await newUser.save();
       res.json({ message: "User data saved successfully!" });
     } catch (error) {
@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
 };
   
 export const sendAlerts = async (req, res) => {
-    const { name, location, familyContact, message } = req.body;
+    const { name, userEmail, location, familyContact, message } = req.body;
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -23,7 +23,7 @@ export const sendAlerts = async (req, res) => {
     });
     try {
       await transporter.sendMail({
-        from: process.env.SMTP_EMAIL,
+        from: userEmail,
         to: familyContact,
         subject: "🚨Emergency Alert🚨",
         html: `
