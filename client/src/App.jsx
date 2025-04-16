@@ -62,7 +62,6 @@ function App() {
     e.preventDefault();
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
-      alert(response.data.message);
       toast.success(
         "Emergency alert sent to family members!",
         {
