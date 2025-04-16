@@ -14,6 +14,7 @@ function App() {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
+    userEmail: "",
     location: "",
     familyContact: "",
     message: ""
@@ -109,6 +110,17 @@ function App() {
                   label="Age"
                   name="age"
                   value={formData.age}
+                  onChange={handleInputChange}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="email"
+                  label="Your Email"
+                  name="userEmail"
+                  value={formData.userEmail}
                   onChange={handleInputChange}
                   required
                 />
