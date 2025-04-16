@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import axios from "axios";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  TextField,
+  Grid,
+  Paper
+} from "@mui/material";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -21,8 +29,8 @@ function App() {
               `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
             );
             const data = await response.json();
-            const locationName = data.display_name; // or data.address.city/state, etc.
-  
+            const locationName = data.display_name;
+
             setFormData((prevData) => ({
               ...prevData,
               location: locationName
@@ -39,7 +47,6 @@ function App() {
       alert("Geolocation is not supported by your browser.");
     }
   }, []);
-  
 
   const handleInputChange = (e) => {
     setFormData({
@@ -65,60 +72,103 @@ function App() {
       alert(response.data.message);
     } catch (error) {
       console.error("Error sending mail");
-      alert("Failed to send mail form.");
+      alert("Failed to send mail.");
     }
   };
 
   return (
-    <div className="app-container">
-      <h1>🌸 Women Safety App 🌸</h1>
-      <form onSubmit={submitForm} className="form-container">
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-        />
-        <label>Age:</label>
-        <input
-          type="number"
-          name="age"
-          value={formData.age}
-          onChange={handleInputChange}
-          required
-        />
-        <label>Location (Auto-filled):</label>
-        <input
-          type="text"
-          name="location"
-          value={formData.location}
-          readOnly
-        />
-        <label>Family Contact:</label>
-        <input
-          type="text"
-          name="familyContact"
-          value={formData.familyContact}
-          onChange={handleInputChange}
-          placeholder="e.g., family@example.com"
-          required
-        />
-        <label>Message (optional): </label>
-        <input
-          type="text"
-          name="message"
-          value={formData.message}
-          onChange={handleInputChange}
-          placeholder="Enter a message"
-        />
-        <button type="submit" className="submit-btn">Submit</button>
-      </form>
-      <button onClick={sendEmergencyAlert} className="alert-btn">
-        🚨 Send Emergency Alert 🚨
-      </button>
-    </div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Container maxWidth="md">
+        <Paper elevation={4} sx={{ p: 4, borderRadius: 3 }}>
+          <Typography variant="h5" align="center" gutterBottom>
+            Women Safety App
+          </Typography>
+          <form onSubmit={submitForm}>
+            <Grid container spacing={2}>
+              <Grid item xs={20}>
+                <TextField
+                  fullWidth
+                  label="Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="number"
+                  label="Age"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleInputChange}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Location (Auto-filled)"
+                  name="location"
+                  value={formData.location}
+                  InputProps={{
+                    readOnly: true
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Family Contact Email"
+                  name="familyContact"
+                  value={formData.familyContact}
+                  onChange={handleInputChange}
+                  placeholder="e.g., family@example.com"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Message (optional)"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              {/* <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Submit
+                </Button>
+              </Grid> */}
+              <Grid item xs={12}>
+                <Button
+                  onClick={sendEmergencyAlert}
+                  variant="contained"
+                  color="error"
+                  fullWidth
+                >
+                  Send Emergency Alert
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+      </Container>
+    </Box>
   );
 }
 
