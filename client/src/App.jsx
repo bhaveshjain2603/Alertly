@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 import {
   Box,
   Container,
@@ -59,9 +60,20 @@ function App() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData)
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
       alert(response.data.message);
+      toast.success(
+        "Emergency alert sent to family members!",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to submit form.");
