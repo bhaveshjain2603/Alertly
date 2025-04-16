@@ -63,7 +63,7 @@ function App() {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
       toast.success(
-        "Emergency alert sent to family members!",
+        "User data saved successfully!",
         {
           position: "top-center",
           autoClose: 3000,
