@@ -25,10 +25,10 @@ export const sendAlerts = async (req, res) => {
       await transporter.sendMail({
         from: process.env.SMTP_EMAIL,
         to: familyContact,
-        subject: "🚨 Emergency Alert",
+        subject: "🚨Emergency Alert🚨",
         html: `
           <div style="font-family: Arial, sans-serif; color: #333;">
-            <h2 style="color: red;">Emergency Alert 🚨</h2>
+            <h2 style="color: red;">Emergency Alert of ${name} 🚨</h2>
             <p><strong>${name}</strong> has triggered an emergency alert.</p>
             <p><strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}" style="color: #1a73e8;" target="_blank">${location}</a></p>
             ${message ? `<p><strong>Message:</strong> ${message}</p>` : ""}
