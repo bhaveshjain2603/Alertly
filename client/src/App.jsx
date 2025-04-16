@@ -144,6 +144,8 @@ function App() {
                   onChange={handleInputChange}
                 />
               </Grid>
+            </Grid>
+            <Grid container spacing={2} sx={{ pt: 2 }}>
               <Grid item xs={12}>
                 <Button
                   onClick={sendEmergencyAlert}
