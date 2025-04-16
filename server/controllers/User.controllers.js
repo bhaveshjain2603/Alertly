@@ -23,7 +23,7 @@ export const sendAlerts = async (req, res) => {
     });
     try {
       await transporter.sendMail({
-        from: "Alertly App", // Authenticated sender
+        from: `"Alertly App" <${process.env.SMTP_EMAIL}>`, // Authenticated sender
         to: familyContact,
         replyTo: userEmail, // 👈 Add this
         subject: "🚨 Emergency Alert 🚨",
