@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import {
   Box,
   Container,
@@ -91,6 +92,8 @@ function App() {
   };
 
   return (
+    <>
+    <ToastContainer />
     <Box
       sx={{
         minHeight: "100vh",
@@ -197,6 +200,7 @@ function App() {
         </Paper>
       </Container>
     </Box>
+    </>
   );
 }
 
