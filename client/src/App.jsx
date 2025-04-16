@@ -144,16 +144,6 @@ function App() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  Submit
-                </Button>
-              </Grid> */}
               <Grid item xs={12}>
                 <Button
                   onClick={sendEmergencyAlert}
@@ -162,6 +152,16 @@ function App() {
                   fullWidth
                 >
                   Send Emergency Alert
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Submit
                 </Button>
               </Grid>
             </Grid>
