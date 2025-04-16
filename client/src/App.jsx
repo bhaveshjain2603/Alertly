@@ -58,7 +58,7 @@ function App() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/users", formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
       alert(response.data.message);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -68,7 +68,7 @@ function App() {
 
   const sendEmergencyAlert = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/alert", formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/alert`, formData);
       alert(response.data.message);
     } catch (error) {
       console.error("Error sending mail");
