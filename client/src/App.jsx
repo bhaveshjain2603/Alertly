@@ -61,7 +61,7 @@ function App() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
       toast.success(
         "User data saved successfully!",
         {
@@ -75,18 +75,49 @@ function App() {
         }
       );
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to submit form.");
+      toast.error(
+        "Failed to submit form!",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     }
   };
 
   const sendEmergencyAlert = async () => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/alert`, formData);
-      alert(response.data.message);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/alert`, formData);
+      toast.success(
+        "Emergency alert sent to family members!",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     } catch (error) {
-      console.error("Error sending mail");
-      alert("Failed to send mail.");
+      toast.error(
+        "Failed to send mail!",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     }
   };
 
