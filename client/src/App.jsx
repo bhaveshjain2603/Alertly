@@ -58,38 +58,6 @@ function App() {
     });
   };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, formData);
-      toast.success(
-        "User data saved successfully!",
-        {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    } catch (error) {
-      toast.error(
-        "Failed to submit form!",
-        {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    }
-  };
-
   const sendEmergencyAlert = async () => {
     try {
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/alert`, formData);
@@ -212,17 +180,6 @@ function App() {
                   fullWidth
                 >
                   Send Emergency Alert
-                </Button>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  onClick={submitForm}
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  Submit
                 </Button>
               </Grid>
             </Grid>
