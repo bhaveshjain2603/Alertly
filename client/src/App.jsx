@@ -117,12 +117,12 @@ function App() {
     >
       <Container maxWidth="md">
         <Paper elevation={4} sx={{ p: 4, borderRadius: 3 }}>
-          <Typography variant="h5" align="center" gutterBottom>
-            Emergency Alert App
+          <Typography variant="h5" align="center" gutterBottom sx={{ pb: 2 }}>
+          🚨 Emergency Alert App 🚨
           </Typography>
           <form onSubmit={sendEmergencyAlert}>
-            <Grid container spacing={2}>
-              <Grid item xs={20}>
+            <Grid container columnSpacing={6} rowSpacing={4} >
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   label="Name"
@@ -132,7 +132,7 @@ function App() {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   type="number"
@@ -143,7 +143,7 @@ function App() {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   type="email"
@@ -154,7 +154,7 @@ function App() {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   label="Location (Auto-filled)"
@@ -165,7 +165,7 @@ function App() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   label="Family Contact Email"
@@ -176,7 +176,7 @@ function App() {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <TextField
                   fullWidth
                   label="Message (optional)"
@@ -186,8 +186,8 @@ function App() {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2} sx={{ pt: 2 }}>
-              <Grid item xs={12}>
+            <Grid container columnSpacing={6} rowSpacing={4} sx={{ pt: 4 }}>
+              <Grid item xs={12} sm={6} size={{ xs: 12, sm: 4 }}>
                 <Button
                   onClick={sendEmergencyAlert}
                   variant="contained"
