@@ -103,7 +103,7 @@ function App() {
       <Container maxWidth="md">
         <Paper elevation={4} sx={{ p: 4, borderRadius: 3 }}>
           <Typography variant="h5" align="center" gutterBottom>
-            Women Safety App
+            Emergency Alert App
           </Typography>
           <form onSubmit={sendEmergencyAlert}>
             <Grid container spacing={2}>
