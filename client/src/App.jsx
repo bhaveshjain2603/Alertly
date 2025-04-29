@@ -105,7 +105,7 @@ function App() {
           <Typography variant="h5" align="center" gutterBottom>
             Women Safety App
           </Typography>
-          <form onSubmit={submitForm}>
+          <form onSubmit={sendEmergencyAlert}>
             <Grid container spacing={2}>
               <Grid item xs={20}>
                 <TextField
