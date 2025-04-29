@@ -60,6 +60,21 @@ function App() {
 
   const sendEmergencyAlert = async () => {
     try {
+      if ( !formData.name || !formData.age || !formData.userEmail || !formData.location || !formData.familyContact || !formData.message) {
+        toast.error(
+          "Please fill in all the required fields!",
+          {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+        return;
+      }
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/alert`, formData);
       toast.success(
         "Emergency alert sent to family members!",
