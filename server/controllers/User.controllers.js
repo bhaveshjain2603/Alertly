@@ -1,8 +1,9 @@
 import User from "../models/User.models.js";
 import nodemailer from "nodemailer";
 
-export const registerUser = async (req, res) => {
+export const sendAlerts = async (req, res) => {
     const { name, age, userEmail, location, familyContact, message } = req.body;
+
     try {
       const newUser = new User({ name, age, userEmail, location, familyContact, message });
       await newUser.save();
@@ -10,10 +11,7 @@ export const registerUser = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: "Error saving user data." });
     }
-};
-  
-export const sendAlerts = async (req, res) => {
-    const { name, userEmail, location, familyContact, message } = req.body;
+    
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -21,11 +19,12 @@ export const sendAlerts = async (req, res) => {
         pass: process.env.SMTP_PASS
       }
     });
+    
     try {
       await transporter.sendMail({
         from: `"Alertly App" <${process.env.SMTP_EMAIL}>`, // Authenticated sender
         to: familyContact,
-        replyTo: userEmail, // 👈 Add this
+        replyTo: userEmail, 
         subject: "🚨 Emergency Alert 🚨",
         html: `
           <div style="font-family: Arial, sans-serif; color: #333;">
